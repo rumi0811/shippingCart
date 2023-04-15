@@ -9,6 +9,10 @@ body{
     
 }
 
+i{
+    cursor: pointer;
+}
+
 /**
 * ! Navbar style are here
 **/
