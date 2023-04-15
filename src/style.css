@@ -13,6 +13,11 @@ i{
     cursor: pointer;
 }
 
+a{
+    text-decoration: none;
+    color: white;
+}
+
 /**
 * ! Navbar style are here
 **/
@@ -104,4 +109,61 @@ i{
 
 .bi-plus{
     color: green;
+}
+
+.text-center{
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.HomeBtn{
+    background-color: #212529;
+    color: white;
+    border: none;
+    padding: 6px;
+    border-radius: 6px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+
+.bi-file-excel{
+    color: red;
+    font-weight: bold;
+}
+
+.shopping-cart{
+    display: grid;
+    grid-template-columns: repeat(1, 320px);
+    justify-content: center;
+    gap: 15px;
+    
+
+}
+
+.cart-item{
+    border: 2px solid #212529;
+    border-radius: 6px;
+    display: flex;
+}
+
+.title-price-x{
+    width: 195px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+   
+}
+
+.title-price{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.cart-item-price{
+    background-color: #212529;
+    color: #fff;
+    border-radius: 5px;
+    padding: 3px 6px;
 }
