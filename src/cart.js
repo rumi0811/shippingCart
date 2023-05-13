@@ -19,14 +19,15 @@ let generateCartItems = () =>{
             console.log(x);
             let {id, item} = x;
             let search = shopItemsData.find((y)=>y.id === id ) || [];
+            let {img, name, price} = search;
             return `
             <div class="cart-item">
-                <img width ="100" src=${search.img} alt="">
+                <img width ="100" src=${img} alt="">
                 <div class="details">                
                     <div class="title-price-x">
                         <h4 class ="title-price">
-                        <p>${search.name}</p>
-                        <p class="cart-item-price">$ ${search.price}</p>
+                        <p>${name}</p>
+                        <p class="cart-item-price">$ ${price}</p>
                         </h4>
                         <i onclick="removeItem(${id})" class="bi bi-file-excel"></i>
                     </div>
@@ -106,10 +107,45 @@ let update = (id)=>{
     console.log(search.item);
     document.getElementById(id).innerHTML = search.item; 
     calculation();
+    TotalAmount();
 };
 
 let removeItem =(id)=>{
     let selectedItem = id;
-    console.log(selectedItem.id);
+    //console.log(selectedItem.id);
+    basket = basket.filter((x)=>x.id !== selectedItem.id); 
+    generateCartItems();
+    TotalAmount();
+    calculation();
+    localStorage.setItem("data", JSON.stringify(basket));
+};
 
+
+
+let TotalAmount =()=>{
+    if(basket.length !== 0){
+        let amount = basket.map((x)=>{
+            let {item, id} = x;
+            let search = shopItemsData.find((y)=>y.id === id ) || [];
+            return item * search.price;
+        }).reduce((x,y)=>x+y,0)
+       // console.log(amount);
+
+       label.innerHTML = `
+       <h2>Total Bill : $ ${amount}</h2>
+       <button class="checkout">Check Out</button>
+       <button onclick = "clearCart()" class="removeAll">Clear Cart</button>
+       `;
+    }
+    else return;
+};
+
+TotalAmount();
+
+let clearCart = ()=>{
+    basket = [];
+    generateCartItems();
+    localStorage.setItem("data", JSON.stringify(basket));
+    calculation();
 }
+ 
